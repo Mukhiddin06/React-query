@@ -1,4 +1,4 @@
-import { Link, Route, Routes } from 'react-router-dom'
+import { Link, NavLink, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
 import Add from './pages/Add'
@@ -8,9 +8,9 @@ function App() {
 
   return (
     <>
-    <div>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/add"}>Add</Link>
+    <div className='p-5 flex w-[200px] space-x-5 mx-auto text-[22px] font-bold'>
+      <NavLink to={"/"}>Home</NavLink>
+      <NavLink to={"/add"}>Add</NavLink>
     </div>
     <Routes>
       <Route path='/' element={<Home/>} />
