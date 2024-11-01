@@ -4,7 +4,7 @@ import React from 'react'
 const columuns = [
     {
         title:"ID",
-        dataIndex:"id"
+        dataIndex:"key"
     },
     {
         title:"Name",

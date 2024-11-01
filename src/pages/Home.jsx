@@ -3,17 +3,24 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import React from 'react'
 import CustomTable from '../components/CustomTable'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
     const HTTP = import.meta.env.VITE_API
     const queryClient = useQueryClient()
+    const navigate = useNavigate()
+
+    function  moreBtnClick(id){
+        navigate(`/home/${id}`)
+        queryClient.invalidateQueries(["singleStudent"])
+    }
 
     function getAllStudents(){
         return axios.get(`${HTTP}/students`).then(res => (
             res.data.map((item, index) => {
                 item.key = index + 1
                 item.action = <div className='flex items-center space-x-5'>
-                    <MoreOutlined className='cursor-pointer'/>
+                    <MoreOutlined onClick={() => moreBtnClick(item.id)} className='cursor-pointer'/>
                     <EditOutlined className='cursor-pointer'/>
                     <DeleteOutlined onClick={() => handleDelete(item.id)} className='cursor-pointer'/>
                 </div>
